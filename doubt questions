@@ -19,3 +19,23 @@ class Solution {
         return dayYear;    
     }
 }
+
+
+https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/
+
+class Solution {
+    public int subtractProductAndSum(int n) {
+        int prod = 1;
+        int sum = 0;
+        int res = n;
+        int rem=0;
+        while(res>0){
+            rem = res%10;
+            res = res/10;
+            sum = sum+rem;
+            prod = prod*rem;
+        }
+        return (prod-sum);
+      
+    }
+}
