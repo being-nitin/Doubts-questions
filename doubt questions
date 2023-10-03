@@ -200,3 +200,62 @@ class Solution {
         return low;
     }
 }
+
+https://leetcode.com/problems/minimum-size-subarray-sum/
+
+class Solution {
+    public int minSubArrayLen(int target, int[] nums) {
+        int currSum = 0;
+        int minValue = Integer.MAX_VALUE;
+        int left = 0;
+        for(int i=0;i<nums.length;i++){
+            currSum = currSum+nums[i];
+            while(currSum>=target){
+                minValue = Math.min(minValue,i-left+1);
+                currSum = currSum-nums[left];
+                left++;
+            }
+        }
+        return minValue==Integer.MAX_VALUE?0:minValue;
+    }
+}
+
+https://leetcode.com/problems/search-in-rotated-sorted-array-ii/
+
+class Solution {
+    public boolean search(int[] nums, int target) {
+    int low = 0;
+        int high = nums.length-1;
+        while(low<=high){
+            int mid = low + (high-low)/2;
+            if(nums[mid]==target){
+                return true;
+            }
+            while(low<mid && nums[low]==nums[mid]){
+                low++;
+            }
+            while(high>mid && nums[high]==nums[mid]){
+                high--;
+            }
+            if(nums[low]<=nums[mid]){
+                if((target>=nums[low] && target<nums[mid])){
+                    high = mid-1;
+                }
+                   else{
+                       low = mid+1;
+                   }
+                   }
+                   else{
+                       if(target>nums[mid] && target<=nums[high]){
+                           low = mid+1;
+                       }
+                       else{
+                           high = mid-1;
+                       }
+                       
+                   }
+    }
+                   return false;
+    
+    }
+}
