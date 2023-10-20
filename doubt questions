@@ -259,3 +259,93 @@ class Solution {
     
     }
 }
+
+https://leetcode.com/problems/find-peak-element/
+
+class Solution {
+    public int findPeakElement(int[] nums) {
+      int low = 0;
+        int high = nums.length-1;
+        while(low<high){
+            int mid = low + (high-low)/2;
+            if(nums[mid]>nums[mid+1]){
+                high = mid;
+            }
+            else{
+                low = mid+1;
+            }
+            
+        }
+        return low;
+    }
+}
+
+https://leetcode.com/problems/intersection-of-two-arrays-ii/
+
+ public int[] intersect(int[] nums1, int[] nums2) {
+        int l1 = nums1.length;
+        int l2 = nums2.length;
+        int i = 0, j = 0, k = 0;
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        while( i < l1 && j < l2)
+        {
+            if(nums1[i] < nums2[j])
+            {
+                i++;
+            }
+            else if(nums1[i] > nums2[j])
+            {
+                j++;
+            }
+            else
+            {
+                nums1[k++] = nums1[i++];
+                j++;
+            }
+        }
+        return Arrays.copyOfRange(nums1,0,k);
+    }
+}
+
+https://leetcode.com/problems/search-in-rotated-sorted-array-ii/
+
+class Solution {
+    public boolean search(int[] nums, int target) {
+    int low = 0;
+        int high = nums.length-1;
+        while(low<=high){
+            int mid = low + (high-low)/2;
+            if(nums[mid]==target){
+                return true;
+            }
+            while(low<mid && nums[low]==nums[mid]){
+                low++;
+            }
+            while(high>mid && nums[high]==nums[mid]){
+                high--;
+            }
+            if(nums[low]<=nums[mid]){
+                if((target>=nums[low] && target<nums[mid])){
+                    high = mid-1;
+                }
+                   else{
+                       low = mid+1;
+                   }
+                   }
+                   else{
+                       if(target>nums[mid] && target<=nums[high]){
+                           low = mid+1;
+                       }
+                       else{
+                           high = mid-1;
+                       }
+                       
+                   }
+    }
+                   return false;
+    
+    }
+}
+
+
